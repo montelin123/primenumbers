@@ -1206,15 +1206,19 @@ class Start():
     y=400
     z = 0
     b = 0
+#experimentig with shape of spiral 
 def gora():
-    Start.y -= 27
+    Start.y -= 20
+   #Start.x -= 10 #most impressing so far
 def dol():
-    Start.y += 27
+    Start.y += 20
+   #Start.x += 10 #most impressing so far
 def prawo():
-    Start.x += 27
+    Start.x += 20
+   #Start.y += 10 #most impressing so far
 def lewo():
-    Start.x -= 27
-
+    Start.x -= 20
+   #Start.y -= 10 #most impressing so far
 def main():
     win = GraphWin("r", 1600, 800)
     a=0
