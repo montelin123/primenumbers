@@ -21,7 +21,7 @@ def main():
                 counterList.append(counter)
             for item in counterList:
                 up()
-                if item in listPrimes:
+                if a in listPrimes:
                     #setTextColor('red')
                     a += 1
                 else:
@@ -30,7 +30,7 @@ def main():
                 counterList.append(counter)
             for item in counterList:
                 right()
-                if item in listPrimes:
+                if a in listPrimes:
                     #setTextColor('red')
                     a += 1
                 else:
@@ -40,7 +40,7 @@ def main():
                 counterList.append(counter)
             for item in counterList:
                 down()
-                if item in listPrimes:
+                if a in listPrimes:
                     #setTextColor('red')
                     a += 1
                 else:
@@ -49,7 +49,7 @@ def main():
                 counterList.append(counter)
             for item in counterList:
                 left()
-                if item in listPrimes:
+                if a in listPrimes:
                     #setTextColor('red')
                     a += 1
                 else:
