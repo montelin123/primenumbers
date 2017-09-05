@@ -71,9 +71,9 @@ for e in listNumbers:
         counter += 1
     except IndexError:
         pass
-#correction for good sprial
-UlamArray= np.delete(UlamArray,(11),axis = 0)
-UlamArray= np.delete(UlamArray,(11),axis = 1)
-UlamArrayPrimes = np.delete(UlamArrayPrimes,(11),axis=0)
-UlamArrayPrimes = np.delete(UlamArrayPrimes,(11),axis=1)
+#correction for good sprial, if you change size of np.zeros delete last row and column
+UlamArray= np.delete(UlamArray,(119),axis = 0)
+UlamArray= np.delete(UlamArray,(119),axis = 1)
+UlamArrayPrimes = np.delete(UlamArrayPrimes,(119),axis=0)
+UlamArrayPrimes = np.delete(UlamArrayPrimes,(119),axis=1)
 # pyploting below
