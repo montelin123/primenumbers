@@ -1,0 +1,79 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import json
+with open('modul.py', 'r') as file:
+    primesList = json.load(file) #use instead of def isPrime(),
+
+listNumbers= [i for i in range(1,14400)] #UlamArray**2, (custom starting range, add it to max range), last row and column will be removed
+number = 0 # counter for listNumbers
+UlamArray = np.zeros([120,120]) #here will be putted numbers from listNumbers
+UlamArrayPrimes = np.zeros([120,120]) # in this array will be putted primes numbers in same order like in UllamArray, not primes = 0
+start = [60,60] # starting point of spiral, middle is strongly suggested
+startPrimes = [60,60] # same as start
+counter = 0
+counterList = [0]
+
+class Changeable(): # loop core
+    xstart = start[0]
+    ystart = start[1]
+def isPrime(n):
+    if n==2 or n==3: return True
+    if n%2==0 or n<2: return False
+    for i in range(3,int(n**0.5)+1,2):
+        if n%i==0:
+            return False
+    return True
+def up(startx,y,number): #up movment per step + writing number to array
+    UlamArray[(startx-1),y] = listNumbers[number]
+    UlamArrayPrimes[(startx - 1), y] = (number if isPrime(number) == True else 0) #number if number in primesList else 0
+    Changeable.xstart -= 1
+
+def down(startx,y,number):#down movment per step+ writing number to array
+    UlamArray[(startx + 1), y] = listNumbers[number]
+    UlamArrayPrimes[(startx + 1), y] = (number if isPrime(number) == True else 0)
+    Changeable.xstart += 1
+
+def right(starty,x,number):#right movment per step+ writing number to array
+    UlamArray[x,(starty+1)] = listNumbers[number]
+    UlamArrayPrimes[x, (starty + 1)] = (number if isPrime(number) == True else 0)
+    Changeable.ystart += 1
+
+def left(starty,x,number):#left movment per step+ writing number to array
+    UlamArray[x,(starty-1)] = listNumbers[number]
+    UlamArrayPrimes[x, (starty - 1)] = (number if isPrime(number) == True else 0)
+    Changeable.ystart -= 1
+
+#this loop  draws Ulam spiral and puts numbers from listNumbers list
+#order = up right down left(changeable if not opposite one after other), counter +=1 after two directions
+for e in listNumbers:
+    try:
+        if counter > len(counterList)-1:
+            counterList.append(counter)
+        for item in counterList:
+            up(Changeable.xstart, Changeable.ystart, listNumbers[number])
+            number += 1
+        if counter > len(counterList)-1:
+            counterList.append(counter)
+        for item in counterList:
+            right(Changeable.ystart, Changeable.xstart, listNumbers[number])
+            number += 1
+        counter +=1
+        if counter > len(counterList)-1:
+            counterList.append(counter)
+        for item in counterList:
+            down(Changeable.xstart, Changeable.ystart ,listNumbers[number])
+            number += 1
+        if counter > len(counterList)-1:
+            counterList.append(counter)
+        for item in counterList:
+            left(Changeable.ystart, Changeable.xstart, listNumbers[number])
+            number += 1
+        counter += 1
+    except IndexError:
+        pass
+#correction for good sprial
+UlamArray= np.delete(UlamArray,(11),axis = 0)
+UlamArray= np.delete(UlamArray,(11),axis = 1)
+UlamArrayPrimes = np.delete(UlamArrayPrimes,(11),axis=0)
+UlamArrayPrimes = np.delete(UlamArrayPrimes,(11),axis=1)
+# pyploting below
